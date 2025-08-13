@@ -4,8 +4,11 @@ Routes for the main blueprint.
 import math
 from datetime import datetime
 from flask import Blueprint, render_template, request, redirect, url_for, abort
-from ...models.story import Story, WorldBuilderEntry, Character
-from ...services.llm_service import generate_text
+
+from ..models.story import Story, WorldBuilderEntry, Character
+from ..services.llm_service import generate_text
+
+
 
 # Create the main blueprint
 main_bp = Blueprint(
