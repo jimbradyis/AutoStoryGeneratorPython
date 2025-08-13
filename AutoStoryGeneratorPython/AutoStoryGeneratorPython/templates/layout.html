@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }} - My Flask Application</title>
-    <link rel="stylesheet" type="text/css" href="/static/content/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="/static/content/site.css" />
-    <script src="/static/scripts/modernizr-2.6.2.js"></script>
+    <title>{{ title }} - Auto Story Generator</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='content/bootstrap.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='content/site.css') }}" />
+    <script src="{{ url_for('static', filename='scripts/modernizr-2.6.2.js') }}"></script>
 </head>
 
 <body>
@@ -18,13 +18,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="/" class="navbar-brand">Application name</a>
+                <a href="{{ url_for('main_bp.home') }}" class="navbar-brand">Auto Story Generator</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url_for('home') }}">Home</a></li>
-                    <li><a href="{{ url_for('about') }}">About</a></li>
-                    <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                    <li><a href="{{ url_for('main_bp.home') }}">Home</a></li>
                 </ul>
             </div>
         </div>
@@ -34,7 +32,7 @@
         {% block content %}{% endblock %}
         <hr />
         <footer>
-            <p>&copy; {{ year }} - My Flask Application</p>
+            <p>&copy; {{ year }} - Auto Story Generator</p>
         </footer>
     </div>
 
