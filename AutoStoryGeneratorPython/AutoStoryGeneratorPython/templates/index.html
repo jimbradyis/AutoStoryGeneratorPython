@@ -2,32 +2,82 @@
 
 {% block content %}
 
-<div class="jumbotron">
-    <h1>Flask</h1>
-    <p class="lead">Flask is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://flask.pocoo.org/" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-</div>
+<h2>Create Your Story</h2>
+<p>Fill out the details below to begin generating your story.</p>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            Flask gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://flask.pocoo.org/docs/">Learn more &raquo;</a></p>
+<form action="{{ url_for('main_bp.home') }}" method="post" class="form-horizontal">
+    <div class="form-group">
+        <label for="prompt" class="col-sm-2 control-label">Story Prompt</label>
+        <div class="col-sm-10">
+            <textarea class="form-control" id="prompt" name="prompt" rows="4" placeholder="A young wizard discovers a hidden power..." required></textarea>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>The Python Package Index is a repository of software for the Python programming language.</p>
-        <p><a class="btn btn-default" href="https://pypi.python.org/pypi">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Microsoft Azure</h2>
-        <p>You can easily publish to Microsoft Azure using Visual Studio. Find out how you can host your application using a free trial today.</p>
-        <p><a class="btn btn-default" href="http://azure.microsoft.com">Learn more &raquo;</a></p>
-    </div>
-</div>
 
+    <div class="form-group">
+        <label for="main_character_desc" class="col-sm-2 control-label">Main Character</label>
+        <div class="col-sm-10">
+            <textarea class="form-control" id="main_character_desc" name="main_character_desc" rows="3" placeholder="e.g., 'A cynical but brilliant detective with a troubled past.'" required></textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="target_length" class="col-sm-2 control-label">Target Length (Words)</label>
+        <div class="col-sm-10">
+            <select id="length_preset" class="form-control" onchange="updateLength()">
+                <option value="custom" selected>Custom</option>
+                <option value="900">Flash Fiction (~900)</option>
+                <option value="5000">Short Story (~5,000)</option>
+                <option value="30000">Novella (~30,000)</option>
+                <option value="60000">Novel (~60,000)</option>
+                <option value="100000">Epic (~100,000)</option>
+            </select>
+            <input type="number" class="form-control" id="target_length" name="target_length" value="5000" style="margin-top: 10px;">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="world_guide" class="col-sm-2 control-label">World Guide</label>
+        <div class="col-sm-10">
+            <textarea class="form-control" id="world_guide" name="world_guide" rows="4" placeholder="e.g., 'A steampunk Elizabethan era where the queen is a vampire.'"></textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="genre" class="col-sm-2 control-label">Genre</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="genre" name="genre" placeholder="e.g., Fantasy, Sci-Fi" required>
+        </div>
+        <label for="tone" class="col-sm-2 control-label">Tone</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="tone" name="tone" placeholder="e.g., Dark, Comedic, Mysterious" required>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="style" class="col-sm-2 control-label">Author Style</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="style" name="style" placeholder="e.g., 'In the style of Ernest Hemingway'">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary btn-large">Generate Story</button>
+        </div>
+    </div>
+</form>
+
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script>
+    function updateLength() {
+        var preset = document.getElementById('length_preset');
+        var customLength = document.getElementById('target_length');
+        if (preset.value !== 'custom') {
+            customLength.value = preset.value;
+        }
+    }
+</script>
 {% endblock %}

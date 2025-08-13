@@ -1,9 +1,9 @@
 """
-This script runs the AutoStoryGeneratorPython application using a development server.
+This allows the package to be run as a script.
+e.g., python -m AutoStoryGeneratorPython
 """
-
 from os import environ
-from AutoStoryGeneratorPython import app
+from . import app
 
 if __name__ == '__main__':
     HOST = environ.get('SERVER_HOST', 'localhost')
