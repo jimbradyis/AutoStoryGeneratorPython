@@ -8,14 +8,9 @@ from flask import Blueprint, render_template, request, redirect, url_for, abort
 from ..models.story import Story, WorldBuilderEntry, Character
 from ..services.llm_service import generate_text
 
-
-
 # Create the main blueprint
-main_bp = Blueprint(
-    'main_bp', __name__,
-    template_folder='../templates',
-    static_folder='../static'
-)
+main_bp = Blueprint('main_bp', __name__)
+
 
 # In-memory store for stories. In a real app, this would be a database.
 stories = {}

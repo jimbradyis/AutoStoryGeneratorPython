@@ -12,7 +12,9 @@ def create_app():
 
     # Register blueprints
     from .main.routes import main_bp
-    app.register_blueprint(main_bp)
+
+    app.register_blueprint(main_bp, url_prefix='/')
+
 
     return app
 
